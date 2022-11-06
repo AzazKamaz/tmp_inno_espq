@@ -4,9 +4,9 @@ CODE = espq
 
 .PHONY: venv
 venv:
-	python -m venv $(VENV)
-	$(VENV)/bin/python -m pip install --upgrade pip
-	$(VENV)/bin/python -m pip install poetry
+	python3 -m venv $(VENV)
+	$(VENV)/bin/python3 -m pip install --upgrade pip
+	$(VENV)/bin/python3 -m pip install poetry
 	$(VENV)/bin/poetry install
 
 .PHONY: test
@@ -25,12 +25,12 @@ build_docker:
 
 .PHONY: up_dev
 up_dev:
-	$(VENV)/bin/uvicorn --port 8080 espq.main:app --reload
-
+	$(VENV)/bin/poetry run dev
+	
 
 .PHONY: up
 up:
-	$(VENV)/bin/uvicorn --host 0.0.0.0 --port 8080 espq.main:app
+	$(VENV)/bin/poetry run prod
 
 
 .PHONY: up_docker
